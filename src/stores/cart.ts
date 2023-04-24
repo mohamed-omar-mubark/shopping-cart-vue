@@ -1,13 +1,15 @@
 import { defineStore } from "pinia";
 import { v4 as uuid4 } from "uuid";
-import type { Cart, Product } from "../types/interfaces";
+import type { Cart, Product, DisplayCart } from "../types/interfaces";
+import productData from "../../products.json";
 
 interface State {
   cart: Cart | {};
+  displayCart: DisplayCart[] | [];
 }
 
 export const useCartStore = defineStore("cart", {
-  state: () => ({ cart: {} } as State),
+  state: () => ({ cart: {}, displayCart: [] } as State),
 
   getters: {},
 
@@ -52,7 +54,25 @@ export const useCartStore = defineStore("cart", {
     // remove product from cart
     removeFromCart(id: number) {
       (this.cart as Cart).products = (this.cart as Cart).products.filter((ci) => ci.id != id);
+      this.displayCartLoad();
       localStorage.setItem("cart", JSON.stringify(this.cart));
+    },
+
+    // display cart
+    displayCartLoad() {
+      this.displayCart = (this.cart as Cart).products.map((ci) => {
+        const requiredProduct = productData.filter((p) => p.id == ci.id);
+        // if (requiredProduct[0].stock >= ci.qty)
+        return {
+          id: ci.id,
+          name: requiredProduct[0].name,
+          price: requiredProduct[0].price,
+          qty: ci.qty,
+          currency: requiredProduct[0].currency,
+          inStock: requiredProduct[0].stock >= ci.qty ? true : false,
+          color: requiredProduct[0].color
+        };
+      });
     }
   }
 });
