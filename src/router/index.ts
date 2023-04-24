@@ -1,23 +1,31 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from "vue-router";
+
+// import routes from modules
+// public routes
+import publicRoutes from "@/modules/public/routes/public.routes.js";
+
+// declare base routes
+const baseRoutes: any = [];
+
+const routes = baseRoutes.concat(
+  // public routes
+  publicRoutes
+);
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    }
-  ]
-})
 
-export default router
+  routes,
+
+  scrollBehavior(to) {
+    if (to.hash) {
+      // return savedPosition or scroll to anchor by returning the selector
+      return { el: to.hash, behavior: "smooth" };
+    } else {
+      // return smooth scroll to top
+      return { top: 0, behavior: "smooth" };
+    }
+  }
+});
+
+export default router;
