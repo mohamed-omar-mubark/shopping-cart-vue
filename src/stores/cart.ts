@@ -6,7 +6,7 @@ interface State {
   cart: Cart | {};
 }
 
-const useCartStore = defineStore("cart", {
+export const useCartStore = defineStore("cart", {
   state: () => ({ cart: {} } as State),
 
   getters: {},
