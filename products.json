@@ -4,7 +4,7 @@
     "name": "T-shirt",
     "href": "https://www.google.com",
     "imageSrc": "https://cdn.shopify.com/s/files/1/0200/1890/products/BlackTSM_2048x.jpg?v=1679337203",
-    "imageAlt": "T-shirt",
+    "imageAlt": "Black T-shirt",
     "price": 120,
     "currency": "$",
     "color": "Black",
@@ -14,22 +14,22 @@
     "id": 2,
     "name": "T-shirt",
     "href": "https://www.google.com",
-    "imageSrc": "https://cdn.shopify.com/s/files/1/0200/1890/products/BlackTSM_2048x.jpg?v=1679337203",
-    "imageAlt": "T-shirt",
-    "price": 120,
+    "imageSrc": "https://cdn.shopify.com/s/files/1/0200/1890/products/MT3_2048x.jpg?v=1656780293",
+    "imageAlt": "White T-shirt",
+    "price": 100,
     "currency": "$",
-    "color": "Black",
-    "stock": 10
+    "color": "White",
+    "stock": 6
   },
   {
     "id": 3,
     "name": "T-shirt",
     "href": "https://www.google.com",
-    "imageSrc": "https://cdn.shopify.com/s/files/1/0200/1890/products/BlackTSM_2048x.jpg?v=1679337203",
-    "imageAlt": "T-shirt",
-    "price": 120,
+    "imageSrc": "https://m.media-amazon.com/images/I/51YZNlrA0IL._AC_SL1500_.jpg",
+    "imageAlt": "Red T-shirt",
+    "price": 80,
     "currency": "$",
-    "color": "Black",
-    "stock": 10
+    "color": "Red",
+    "stock": 3
   }
 ]
