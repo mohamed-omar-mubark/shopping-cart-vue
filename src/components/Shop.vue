@@ -27,28 +27,32 @@
               <Button
                 icon="pi pi-minus"
                 severity="secondary"
-                @click="quantity > 1 ? quantity-- : null" />
+                @click="decreaseQuantity(product.id)" />
 
               <InputNumber
                 class="max-w-5rem border-white"
-                v-model="quantity"
+                v-model="product.quantity"
+                :min="1"
                 fluid />
 
               <Button
                 icon="pi pi-plus"
                 severity="secondary"
-                @click="quantity++" />
+                @click="increaseQuantity(product.id)" />
             </div>
           </div>
 
           <div class="flex flex-column gap-3">
             <span class="text-xl font-semibold text-gray-900">
-              {{ product.currency + product.price }}
+              {{
+                product.currency + (product.price * product.quantity).toFixed(2)
+              }}
             </span>
             <Button
               label="Add to Cart"
               icon="pi pi-shopping-cart"
-              size="small" />
+              size="small"
+              @click="addToCart(product)" />
           </div>
         </div>
       </div>
@@ -57,7 +61,7 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { onMounted } from "vue";
   // PrimeVue Components
   import Button from "primevue/button";
   import InputNumber from "primevue/inputnumber";
@@ -68,5 +72,29 @@
   import { useCartStore } from "../store/cart";
   const cartStore = useCartStore();
 
-  const quantity = ref(1);
+  // Initialize quantity for each product
+  onMounted(() => {
+    productsStore.products.forEach((product) => {
+      product.quantity = product.quantity || 1;
+    });
+  });
+
+  // Quantity logic
+  const increaseQuantity = (productId) => {
+    const product = productsStore.products.find((p) => p.id === productId);
+    if (product) product.quantity++;
+  };
+
+  const decreaseQuantity = (productId) => {
+    const product = productsStore.products.find((p) => p.id === productId);
+    if (product && product.quantity > 1) product.quantity--;
+  };
+
+  // Add to cart logic
+  const addToCart = (product) => {
+    cartStore.addToCart({
+      ...product,
+      quantity: product.quantity,
+    });
+  };
 </script>
