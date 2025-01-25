@@ -8,6 +8,7 @@ export const useProductsStore = defineStore("products", {
         price: 12.99,
         currency: "$",
         image: "/products/product-1.webp",
+        quantity: 1,
       },
       {
         id: 2,
@@ -15,6 +16,7 @@ export const useProductsStore = defineStore("products", {
         price: 9.99,
         currency: "$",
         image: "/products/product-2.webp",
+        quantity: 1,
       },
       {
         id: 3,
@@ -22,6 +24,7 @@ export const useProductsStore = defineStore("products", {
         price: 5.99,
         currency: "$",
         image: "/products/product-3.webp",
+        quantity: 1,
       },
       {
         id: 4,
@@ -29,6 +32,7 @@ export const useProductsStore = defineStore("products", {
         price: 3.99,
         currency: "$",
         image: "/products/product-4.webp",
+        quantity: 1,
       },
     ],
   }),
