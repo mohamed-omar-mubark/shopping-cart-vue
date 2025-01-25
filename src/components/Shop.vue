@@ -1,12 +1,12 @@
 <template>
   <main class="p-3">
     <header class="p-3 border-bottom-1 border-gray-300">
-      <h1>Shop</h1>
+      <h1 class="text-2xl font-semibold text-gray-900">Shop</h1>
     </header>
 
     <section class="products-list p-3 flex flex-column gap-3">
       <div
-        v-for="product in products"
+        v-for="product in productsStore.products"
         :key="product.id"
         class="product flex-start-center gap-3 border-bottom-1 border-gray-300">
         <div
@@ -58,38 +58,15 @@
 
 <script setup>
   import { ref } from "vue";
+  // PrimeVue Components
   import Button from "primevue/button";
   import InputNumber from "primevue/inputnumber";
+  // Products store
+  import { useProductsStore } from "../store/products";
+  const productsStore = useProductsStore();
+  // Cart store
+  import { useCartStore } from "../store/cart";
+  const cartStore = useCartStore();
 
   const quantity = ref(1);
-  const products = ref([
-    {
-      id: 1,
-      name: "Mixed Nuts Berries Pack",
-      price: 12.99,
-      currency: "$",
-      image: "/products/product-1.webp",
-    },
-    {
-      id: 2,
-      name: "Organic Fresh Strawberries",
-      price: 9.99,
-      currency: "$",
-      image: "/products/product-2.webp",
-    },
-    {
-      id: 3,
-      name: "Fresh Organic Bananas",
-      price: 5.99,
-      currency: "$",
-      image: "/products/product-3.webp",
-    },
-    {
-      id: 4,
-      name: "Organic Avocado Ripe",
-      price: 3.99,
-      currency: "$",
-      image: "/products/product-4.webp",
-    },
-  ]);
 </script>
